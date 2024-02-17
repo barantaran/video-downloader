@@ -1,8 +1,6 @@
 #downloadButton {
     border-radius: 50%;
     position: fixed;
-    top: 10px;
-    left: 170px;
     box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
     transition: transform 0.3s ease;
     background-color: #FCFCFD;
@@ -18,4 +16,24 @@
 
 #downloadButton:hover {
     transform: translateY(-2px);
+}
+
+.button-youtube {
+    top: 10px;
+    left: 170px;
+}
+
+.button-tiktok {
+    top: 10px;
+    left: 170px;
+}
+
+.button-ok {
+    top: 10px;
+    left: 170px;
+}
+
+.button-rutube {
+    top: 20px;
+    left: 230px;
 }
