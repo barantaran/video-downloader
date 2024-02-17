@@ -1,7 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function DownloadButton() {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isVideoPage, setIsVideoPage] = useState(false);
+
+  const checkUrl = () => {
+    const videoPlatforms = ['youtube.com', 'tiktok.com', 'ok.ru', 'rutube.ru'];
+    setIsVideoPage(videoPlatforms.some(platform => window.location.href.includes(platform)));
+  };
+
+  useEffect(() => {
+    checkUrl(); // Проверить URL при монтировании
+
+    // Следим за изменениями URL в SPA
+    const observer = new MutationObserver(checkUrl);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Очистка
+    return () => observer.disconnect();
+  }, []);
 
   const handleClick = async () => {
     const videoUrl = window.location.href;
@@ -25,7 +41,7 @@ function DownloadButton() {
       if (response.ok) {
         const responseData = await response.json();
         if (responseData && responseData.url) {
-          location.href = responseData.url;
+          window.open(responseData.url, '_blank');
         } else {
           throw new Error('URL не найден');
         }
@@ -37,22 +53,20 @@ function DownloadButton() {
     }
   };
 
+  if (!isVideoPage) return null; // Отображать кнопку только на страницах с видео
+
   return (
-    <button
-      id="downloadButton"
-      className="button-30"
-      onClick={handleClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-      }}
-    >
-      <img
-        src="https://raw.githubusercontent.com/barantaran/youtube-downloader/fix-button/src/img.png"
-        alt="Download"
-        style={{ width: '95%', height: 'auto' }}
-      />
-    </button>
+      <button
+          id="downloadButton"
+          className="button-30"
+          onClick={handleClick}
+      >
+        <img
+            src="https://raw.githubusercontent.com/barantaran/youtube-downloader/fix-button/src/img.png"
+            alt="Download"
+            style={{ width: '95%', height: 'auto' }}
+        />
+      </button>
   );
 }
 
