@@ -1,114 +1,104 @@
 import React, { useEffect, useState } from 'react';
 
-function DownloadButton({ position }) {
-  const [isVideoPage, setIsVideoPage] = useState(false);
+function DownloadButton() {
+    const [isVisible, setIsVisible] = useState(false);
+    const [buttonClass, setButtonClass] = useState('');
 
-  const checkUrl = () => {
-    const videoPlatforms = ['youtube.com', 'vk.com', 'instagram.com', 'twitch.tv', 'reddit.com'];
-    setIsVideoPage(videoPlatforms.some(platform => window.location.href.includes(platform)));
-  };
+    const checkPageForVideo = () => {
+        const url = window.location.href;
+        let site = '';
 
-  useEffect(() => {
-    checkUrl(); // Check URL
+        if (url.includes('youtube.com/watch')) {
+            site = 'youtube';
+            setButtonClass('button-youtube');
+        } else if (url.includes('twitch.tv/@')) {
+            site = 'twitch';
+            setButtonClass('button-twitch');
+        } else if (url.includes('instagram.com/video/')) {
+            site = 'instagram';
+            setButtonClass('button-instagram');
 
-    // Следим за изменениями URL в SPA
-    const observer = new MutationObserver(checkUrl);
-    observer.observe(document.body, { childList: true, subtree: true });
+        } else if (url.includes('vk.ru/video/')) {
+            site = 'vk';
+            setButtonClass('button-vk');
 
-    // Очистка
-    return () => observer.disconnect();
-  }, []);
-
-  const handleClick = async () => {
-    const videoUrl = window.location.href;
-
-    try {
-      const response = await fetch('https://co.wuk.sh/api/json', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          url: encodeURI(videoUrl),
-          vQuality: 'max',
-          filenamePattern: 'basic',
-          isAudioOnly: false,
-          disableMetadata: true,
-        }),
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        if (responseData && responseData.url) {
-          window.open(responseData.url, '_blank');
-        } else {
-          throw new Error('URL не найден');
         }
-      } else {
-        throw new Error('Сетевой ответ не был успешным.');
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
-  // Стилизация кнопки в зависимости от положения
-  const buttonStyle = {
-    position: 'fixed',
-    width: '36px',
-    height: '36px',
-    padding: '0',
-    border: 'none',
-    borderRadius: '50%',
-    cursor: 'pointer',
-    fontFamily: '"JetBrains Mono", monospace',
-    fontSize: '18px',
-    zIndex: '10000',
-    ...position, // добавляем позицию кнопки из пропсов
-    boxShadow: 'rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset',
-    backgroundColor: '#FCFCFD',
-    transition: 'transform 0.3s ease',
-  };
+        const isVideoPage = site !== '';
+        const hasVideoElements = document.querySelectorAll('video').length > 0;
+        setIsVisible(isVideoPage && hasVideoElements);
+    };
 
-  const imgStyle = {
-    width: '95%',
-    height: 'auto',
-  };
+    useEffect(() => {
+        checkPageForVideo();
 
-  return (
-    <button
-      id="downloadButton"
-      className="button-30"
-      onClick={handleClick}
-      style={buttonStyle}
-    >
-      <img
-        src="https://raw.githubusercontent.com/barantaran/youtube-downloader/fix-button/src/img.png"
-        alt="Download"
-        style={imgStyle}
-      />
-    </button>
-  );
+        const observer = new MutationObserver(checkPageForVideo);
+        observer.observe(document.body, { childList: true, subtree: true });
+        window.addEventListener('popstate', checkPageForVideo);
+        window.addEventListener('pushState', checkPageForVideo);
+        window.addEventListener('replaceState', checkPageForVideo);
+
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('popstate', checkPageForVideo);
+            window.removeEventListener('pushState', checkPageForVideo);
+            window.removeEventListener('replaceState', checkPageForVideo);
+        };
+    }, []);
+
+    const handleClick = async () => {
+        const videoUrl = window.location.href;
+
+        try {
+            const response = await fetch('https://co.wuk.sh/api/json', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify({
+                    url: encodeURI(videoUrl),
+                    vQuality: 'max',
+                    filenamePattern: 'basic',
+                    isAudioOnly: false,
+                    disableMetadata: true,
+                }),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                if (responseData && responseData.url) {
+                    window.open(responseData.url, '_blank');
+                } else {
+                    throw new Error('URL не найден');
+                }
+            } else {
+                throw new Error('Сетевой ответ не был успешным.');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    if (!isVisible) return null;
+
+    return (
+        <button
+            id="downloadButton"
+            className={`button-30 ${buttonClass}`}
+            onClick={handleClick}
+        >
+            <img
+                src="https://raw.githubusercontent.com/barantaran/youtube-downloader/fix-button/src/img.png"
+                alt="Download"
+                style={{ width: '95%', height: 'auto' }}
+            />
+        </button>
+    );
 }
 
 function App() {
-  // Установите разные позиции кнопки на разных страницах
-  let position = { top: '100px', left: '100px' }; // позиция по умолчанию
-
-  if (window.location.href.includes('youtube.com')) {
-    position = { top: '17px', left: '180px' };
-  } else if (window.location.href.includes('vk.com')) {
-    position = { top: '650px', left: '440px' };
-  } else if (window.location.href.includes('instagram.com')) {
-    position = { top: '30px', left: '160px' };
-  } else if (window.location.href.includes('twitch.tv')) {
-    position = { top: '7px', left: '240px' };
-  } else if (window.location.href.includes('reddit.com')) {
-    position = { top: '10px', left: '180px' };
-  }
-  
-  return <DownloadButton position={position} />;
+    return <DownloadButton />;
 }
 
 export default App;
