@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import "./injected.css";
 
 function DownloadButton() {
     const [isVisible, setIsVisible] = useState(false);
@@ -11,34 +10,23 @@ function DownloadButton() {
 
         if (url.includes('youtube.com/watch')) {
             site = 'youtube';
+            setButtonClass('button-youtube');
         } else if (url.includes('tiktok.com/@')) {
             site = 'tiktok';
+            setButtonClass('button-tiktok');
         } else if (url.includes('ok.ru/video/')) {
             site = 'ok';
+            setButtonClass('button-ok');
+
         } else if (url.includes('rutube.ru/video/')) {
             site = 'rutube';
+            setButtonClass('button-rutube');
+
         }
 
         const isVideoPage = site !== '';
         const hasVideoElements = document.querySelectorAll('video').length > 0;
         setIsVisible(isVideoPage && hasVideoElements);
-
-        switch (site) {
-            case 'youtube':
-                setButtonClass('button-youtube');
-                break;
-            case 'tiktok':
-                setButtonClass('button-tiktok');
-                break;
-            case 'ok':
-                setButtonClass('button-ok');
-                break;
-            case 'rutube':
-                setButtonClass('button-rutube');
-                break;
-            default:
-                setButtonClass('');
-        }
     };
 
     useEffect(() => {
