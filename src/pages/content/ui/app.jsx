@@ -22,10 +22,12 @@ function DownloadButton() {
             site = 'rutube';
             setButtonClass('button-rutube');
 
-        }  else if (url.includes('vk.com/video')) { // Условие для ВКонтакте
-            site = 'vk';
-            setButtonClass('button-rutube'); // Класс для стилизации кнопки ВКонтакте
         }
+
+        // else if (url.includes('vk.com/video')) { // Условие для ВКонтакте
+        //     site = 'vk';
+        //     setButtonClass('button-rutube'); // Класс для стилизации кнопки ВКонтакте
+        // }
 
         // else if (url.includes('twitch.tv/')) {
         //     site = 'twitch';
