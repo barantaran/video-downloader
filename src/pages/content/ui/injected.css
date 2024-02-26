@@ -1,8 +1,20 @@
+@keyframes swingAnimation {
+    0% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(-5deg);
+    }
+}
+
 #downloadButton {
+    animation: swingAnimation 1s ease-in-out infinite;
     border-radius: 50%;
     position: fixed;
     box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-    transition: transform 0.3s ease;
     background-color: #FCFCFD;
     width: 36px;
     height: 36px;
@@ -16,24 +28,16 @@
 
 #downloadButton:hover {
     transform: translateY(-2px);
+    animation: none; /* Отключаем анимацию при наведении, чтобы кнопка оставалась статичной */
 }
 
-.button-youtube {
-    top: 10px;
-    left: 170px;
-}
-
-.button-tiktok {
-    top: 10px;
-    left: 170px;
-}
-
-.button-ok {
+.button-youtube, .button-tiktok, .button-ok, .button-vk, .button-reddit {
     top: 10px;
     left: 170px;
 }
 
 .button-rutube {
+    /* Убедитесь, что это размещение кнопки для Rutube действительно отличается от других */
     top: 20px;
     left: 230px;
 }
