@@ -392,6 +392,10 @@ manifest.json
 
 ## Screenshots <a name="screenshots"></a>
 
+### Buttons <a name="newtab"></a>
+
+<img width="300" alt="newtab" src="./public/img/youtube.png"> <img width="300" alt="newtab" src="./public/img/tik.png"> <img width="300" alt="newtab" src="./public/img/ok.png"> <img width="300" alt="newtab" src="./public/img/rutube.png"> 
+
 ### New Tab <a name="newtab"></a>
 
 <img width="800" alt="newtab" src="https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/assets/53500778/3e782e41-b605-4956-90e2-20cc48252820">
