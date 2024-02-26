@@ -4,11 +4,9 @@ function DownloadButton() {
     const [isVisible, setIsVisible] = useState(false);
     const [buttonClass, setButtonClass] = useState('');
 
-    function checkPageForVideo() {
+    const checkPageForVideo = () => {
         const url = window.location.href;
         let site = '';
-        let isVideoPage = false;
-        let hasVideoElements = false;
 
         if (url.includes('youtube.com/watch') || url.includes('youtube.com/shorts')) {
             site = 'youtube';
@@ -19,26 +17,16 @@ function DownloadButton() {
         } else if (url.includes('ok.ru/video/')) {
             site = 'ok';
             setButtonClass('button-ok');
+
         } else if (url.includes('rutube.ru/video/')) {
             site = 'rutube';
             setButtonClass('button-rutube');
-        } else if (url.includes('vk.com/video')) {
+
+        }  else if (url.includes('vk.com/video')) { // Условие для ВКонтакте
             site = 'vk';
-            setButtonClass('button-vk');
-        } else if (url.includes('reddit.com')) {
-            site = 'reddit';
-            setButtonClass('button-rutube');
-            // Пробуем определить видео на Reddit по наличию определенных элементов или URL-адресов
-            isVideoPage = true; // Предполагаем, что любая страница на Reddit может содержать видео
-            // Проверяем наличие видео позже, внутри MutationObserver или другого метода
+            setButtonClass('button-rutube'); // Класс для стилизации кнопки ВКонтакте
         }
 
-        if (site === 'reddit') {
-            // Эмулируем наличие видео для Reddit, пока не реализована дополнительная проверка
-            hasVideoElements = true; // Временно устанавливаем true для Reddit
-        } else {
-            hasVideoElements = document.querySelectorAll('video').length > 0;
-        }
         // else if (url.includes('twitch.tv/')) {
         //     site = 'twitch';
         //     setButtonClass('button-rutube');
@@ -48,11 +36,12 @@ function DownloadButton() {
         //     site = 'instagram';
         //     setButtonClass('button-rutube');
         // }
-        console.log("isvisie", isVisible)
-        setIsVisible(isVideoPage && hasVideoElements);
-    }
 
-    console.log("iska")
+        const isVideoPage = site !== '';
+        const hasVideoElements = document.querySelectorAll('video').length > 0;
+        setIsVisible(isVideoPage && hasVideoElements);
+    };
+
     useEffect(() => {
         checkPageForVideo();
 
