@@ -31,8 +31,13 @@
     animation: none; /* Отключаем анимацию при наведении, чтобы кнопка оставалась статичной */
 }
 
-.button-youtube, .button-tiktok, .button-vk, .button-reddit {
+.button-youtube, .button-vk, .button-reddit {
     top: 10px;
+    left: 170px;
+}
+
+.button-tiktok {
+    top: 15px;
     left: 170px;
 }
 
