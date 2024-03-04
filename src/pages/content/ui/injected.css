@@ -1,29 +1,29 @@
 @keyframes bounceAndHighlightAnimation {
     0%, 100% {
-        transform: translateY(0); /* Начальное и конечное положение без изменений */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень в нормальном состоянии */
-        opacity: 1; /* Полная непрозрачность */
+        transform: translateY(0);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        opacity: 1;
     }
     25% {
-        transform: translateY(-6px); /* Подпрыгивание вверх */
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Увеличенная тень */
-        opacity: 0.5; /* Слегка уменьшенная непрозрачность */
+        transform: translateY(-6px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        opacity: 0.5;
     }
     50% {
-        transform: translateY(0); /* Возврат в исходное положение */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Возврат к исходной тени */
-        opacity: 1; /* Возврат к полной непрозрачности */
+        transform: translateY(0);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        opacity: 1;
     }
     75% {
-        transform: translateY(-3px); /* Меньшее подпрыгивание */
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Слегка увеличенная тень */
-        opacity: 0.5; /* Слегка уменьшенная непрозрачность */
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        opacity: 0.5;
     }
 }
 
 .bounceAndHighlight {
     animation: bounceAndHighlightAnimation 2s ease-in-out infinite;
-    transform: translate(-50%, -50%); /* Центрирование дива */
+    transform: translate(-50%, -50%);
 }
 
 #animatedDiv {
@@ -47,7 +47,7 @@
 
 #downloadButton:hover {
     transform: translateY(-2px);
-    animation: none; /* Отключаем анимацию при наведении, чтобы кнопка оставалась статичной */
+    animation: none;
 }
 
 .gif {
@@ -77,7 +77,6 @@
 }
 
 .button-rutube {
-    /* Убедитесь, что это размещение кнопки для Rutube действительно отличается от других */
     top: 20px;
     left: 230px;
 }

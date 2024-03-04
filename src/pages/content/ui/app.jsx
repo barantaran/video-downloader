@@ -3,7 +3,7 @@ function DownloadButton() {
   const [isVisible, setIsVisible] = useState(false);
   const [buttonClass, setButtonClass] = useState('');
   const [animateClass, setAnimateClass] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // Добавляем состояние для индикатора загрузки
+  const [isLoading, setIsLoading] = useState(false);
 
   const checkPageForVideo = () => {
     const url = window.location.href;
