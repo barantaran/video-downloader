@@ -1,19 +1,39 @@
-@keyframes swingAnimation {
-    0% {
-        transform: rotate(-5deg);
+@keyframes bounceAndHighlightAnimation {
+    0%, 100% {
+        transform: translateY(0); /* Начальное и конечное положение без изменений */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень в нормальном состоянии */
+        opacity: 1; /* Полная непрозрачность */
+    }
+    25% {
+        transform: translateY(-6px); /* Подпрыгивание вверх */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Увеличенная тень */
+        opacity: 0.5; /* Слегка уменьшенная непрозрачность */
     }
     50% {
-        transform: rotate(5deg);
+        transform: translateY(0); /* Возврат в исходное положение */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Возврат к исходной тени */
+        opacity: 1; /* Возврат к полной непрозрачности */
     }
-    100% {
-        transform: rotate(-5deg);
+    75% {
+        transform: translateY(-3px); /* Меньшее подпрыгивание */
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Слегка увеличенная тень */
+        opacity: 0.5; /* Слегка уменьшенная непрозрачность */
     }
 }
 
-#downloadButton {
-    animation: swingAnimation 1s ease-in-out infinite;
-    border-radius: 50%;
+.bounceAndHighlight {
+    animation: bounceAndHighlightAnimation 2s ease-in-out infinite;
+    transform: translate(-50%, -50%); /* Центрирование дива */
+}
+
+#animatedDiv {
+    z-index: 10000;
     position: fixed;
+}
+
+
+#downloadButton {
+    border-radius: 50%;
     box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
     background-color: #FCFCFD;
     width: 36px;
@@ -23,7 +43,6 @@
     cursor: pointer;
     font-family: "JetBrains Mono", monospace;
     font-size: 18px;
-    z-index: 10000;
 }
 
 #downloadButton:hover {
@@ -31,9 +50,20 @@
     animation: none; /* Отключаем анимацию при наведении, чтобы кнопка оставалась статичной */
 }
 
-.button-youtube, .button-vk, .button-reddit {
+.gif {
+    width: 100%;
+    border-radius: 50%;
+}
+
+
+.button-vk, .button-reddit {
     top: 10px;
     left: 170px;
+}
+
+.button-youtube {
+    top: 10px;
+    left: 180px;
 }
 
 .button-tiktok {
