@@ -7,7 +7,7 @@
     25% {
         transform: translateY(-6px);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-        opacity: 0.5;
+        opacity: 0.6;
     }
     50% {
         transform: translateY(0);
@@ -17,7 +17,7 @@
     75% {
         transform: translateY(-3px);
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-        opacity: 0.5;
+        opacity: 0.6;
     }
 }
 
