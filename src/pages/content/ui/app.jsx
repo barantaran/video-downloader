@@ -18,7 +18,7 @@ function DownloadButton() {
     } else if (url.includes('ok.ru/video/')) {
       site = 'ok';
       setButtonClass('button-ok');
-    } else if (url.includes('rutube.ru/video/')) {
+    } else if (url.includes('rutube.ru/video/') || url.includes('rutube.ru/ruts/') || url.includes('rutube.ru/yappy/')) {
       site = 'rutube';
       setButtonClass('button-rutube');
     }
