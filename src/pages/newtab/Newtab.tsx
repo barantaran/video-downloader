@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '@assets/img/logo.svg';
+import logo from '@assets/img/button.png';
 import '@pages/newtab/Newtab.css';
 import '@pages/newtab/Newtab.scss';
 import useStorage from '@src/shared/hooks/useStorage';
@@ -18,26 +18,14 @@ const Newtab = () => {
       }}>
       <header className="App-header" style={{ color: theme === 'light' ? '#000' : '#fff' }}>
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/pages/newtab/Newtab.tsx</code> and save to reload.
-        </p>
         <a
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
           style={{ color: theme === 'light' && '#0281dc', marginBottom: '10px' }}>
-          Learn React!
+          Use dead-simple and safe Download Button!
         </a>
-        <h6>The color of this paragraph is defined using SASS.</h6>
-        <button
-          style={{
-            backgroundColor: theme === 'light' ? '#fff' : '#000',
-            color: theme === 'light' ? '#000' : '#fff',
-          }}
-          onClick={exampleThemeStorage.toggle}>
-          Toggle theme
-        </button>
       </header>
     </div>
   );
