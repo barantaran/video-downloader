@@ -1,10 +1,40 @@
+@keyframes bounceAndHighlightAnimation {
+    0%, 100% {
+        transform: translateY(0);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        opacity: 1;
+    }
+    25% {
+        transform: translateY(-6px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(0);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        opacity: 0.6;
+    }
+}
+
+.bounceAndHighlight {
+    animation: bounceAndHighlightAnimation 2s ease-in-out infinite;
+    transform: translate(-50%, -50%);
+}
+
+#animatedDiv {
+    z-index: 10000;
+    position: fixed;
+}
+
+
 #downloadButton {
     border-radius: 50%;
-    position: absolute;
-    top: 653px;
-    left: 425px;
     box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-    transition: transform 0.3s ease;
     background-color: #FCFCFD;
     width: 36px;
     height: 36px;
@@ -17,4 +47,36 @@
 
 #downloadButton:hover {
     transform: translateY(-2px);
+    animation: none;
+}
+
+.gif {
+    width: 100%;
+    border-radius: 50%;
+}
+
+
+.button-vk, .button-reddit {
+    top: 10px;
+    left: 170px;
+}
+
+.button-youtube {
+    top: 10px;
+    left: 180px;
+}
+
+.button-tiktok {
+    top: 15px;
+    left: 170px;
+}
+
+.button-ok {
+    top: 5px;
+    left: 180px;
+}
+
+.button-rutube {
+    top: 20px;
+    left: 230px;
 }
