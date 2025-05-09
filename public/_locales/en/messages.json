@@ -1,10 +1,10 @@
 {
   "extensionDescription": {
-    "description": "Youtube-downloader",
-    "message": "Chrome extension boilerplate developed with Vite, React and Typescript"
+    "description": "video downloader",
+    "message": "chrome extension video downloader for youtube, rutube, tiktok, OK"
   },
   "extensionName": {
-    "description": "Youtube-downloader",
-    "message": "Chrome extension boilerplate"
+    "description": "video downloader",
+    "message": "video downloader"
   }
 }
